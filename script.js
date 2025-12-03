@@ -1,36 +1,38 @@
-class ProducrProperties {
+class ProductProperties {
     constructor(name, price, quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
     }
+
     getTotalValue() {
         return this.price * this.quantity;
     }
+
     toString() {
         return `Product: ${this.name}, Price: $${this.price.toFixed(2)}, Quantity: ${this.quantity}`;
     }
 
-    static applyDiscount(price, discount) {
+    static applyDiscount(products, discount) {
         products.forEach(product => {
             product.price = product.price - (product.price * discount);
         });
     }
 }
 
-class PerishableProductProperties extends ProducrProperties {
+class PerishableProductProperties extends ProductProperties {
     constructor(name, price, quantity, expirationDate) {
         super(name, price, quantity);
         this.expirationDate = expirationDate;
     }
 
     toString() {
-        return `${super.toString()}, Expiration Date: ${this.expirationDate}`;
+        return `Product: ${this.name}, Price: $${this.price.toFixed(2)}, Quantity: ${this.quantity}, Expiration Date: ${this.expirationDate}`;
     }
 }
 
-let apple = new PerishableProductProperties("Apple", 1.5, 2, "12/12/2025");
-let milk = new PerishableProductProperties("Milk", 10.0, 1, "17/12/2025");
+const milk = new PerishableProductProperties("Milk", 5.99, 2, "13/12/2025");
+const apple = new PerishableProductProperties("Apple", 1.99, 8, "10/12/2025");
 
 class Store {
     constructor() {
@@ -49,6 +51,10 @@ class Store {
         return this.inventory.find(product => product.name.toLowerCase() === name.toLowerCase()) || null;
     }
 }
+
+
+
+
 
 
 
