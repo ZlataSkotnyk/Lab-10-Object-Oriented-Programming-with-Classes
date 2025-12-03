@@ -9,8 +9,8 @@ class ProducrProperties {
         return this.price * this.quantity;
     }
     toString(){
-        
-        return `Product: ${this.name}, Price: $${this.price.toFixed(2)}, Quantity: ${this.quantity}`
+        const discounted = ProducrProperties.applyDiscount(this.price, this.discount);
+        return `Product: ${this.name}, Price: $${this.price.toFixed(2)}, Quantity: ${this.quantity}, Price after discount: $${discounted.toFixed(2)}`;
     }
 
     static applyDiscount(price, discount){
@@ -20,8 +20,8 @@ class ProducrProperties {
 }
 
 class PerishableProductProperties extends ProducrProperties {
-    constructor(name, price, quantity, expirationDate){
-        super(name, price, quantity);
+    constructor(name, price, quantity, expirationDate, discount = 0){
+        super(name, price, quantity, discount);
         this.expirationDate = expirationDate;
     }
 
