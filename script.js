@@ -1,14 +1,19 @@
 class ProducrProperties {
-    constructor(name, price, quantity){
+    constructor(name, price, quantity, discount = 0){
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.discount = discount;
     }
     getTotalValue(){
         return this.price * this.quantity;
     }
     toString(){
         return `Product: ${this.name}, Price: $${this.price.toFixed(2)}, Quantity: ${this.quantity}`
+    }
+
+    static applyDiscount(price, discount){
+        
     }
 }
 
