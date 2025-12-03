@@ -1,29 +1,26 @@
 class ProducrProperties {
-    constructor(name, price, quantity, discount = 0) {
+    constructor(name, price, quantity) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
-        this.discount = discount;
     }
     getTotalValue() {
         return this.price * this.quantity;
     }
     toString() {
-        const discounted = ProducrProperties.applyDiscount(this.price, this.discount);
-        const totalAfterDiscount = discounted * this.quantity;
-        return `Product: ${this.name}, Price: $${this.price.toFixed(2)}, Quantity: ${this.quantity}, Total after discount: $${totalAfterDiscount.toFixed(2)}`;
+        return `Product: ${this.name}, Price: $${this.price.toFixed(2)}, Quantity: ${this.quantity}`;
     }
 
     static applyDiscount(price, discount) {
-        const d = (typeof discount === 'number' && !Number.isNaN(discount)) ? discount : 0;
-        const clamped = Math.min(Math.max(d, 0), 1);
-        return price * (1 - clamped);
+        products.forEach(product => {
+            product.price = product.price - (product.price * discount);
+        });
     }
 }
 
 class PerishableProductProperties extends ProducrProperties {
-    constructor(name, price, quantity, expirationDate, discount = 0) {
-        super(name, price, quantity, discount);
+    constructor(name, price, quantity, expirationDate) {
+        super(name, price, quantity);
         this.expirationDate = expirationDate;
     }
 
@@ -32,13 +29,26 @@ class PerishableProductProperties extends ProducrProperties {
     }
 }
 
-let apple = new PerishableProductProperties("Apple", 1.5, 2, "12/12/2025", 0.15);
-let milk = new PerishableProductProperties("Milk", 10.0, 1, "17/12/2025", 0.2);
+let apple = new PerishableProductProperties("Apple", 1.5, 2, "12/12/2025");
+let milk = new PerishableProductProperties("Milk", 10.0, 1, "17/12/2025");
 
-console.log(apple.toString());
-console.log(milk.toString());
+class Store {
+    constructor() {
+        this.inventory = [];
+    }
 
+    addProduct(product) {
+        this.inventory.push(product);
+    }
 
+    getInventoryValue() {
+        return this.inventory.reduce((total, product) => total + product.getTotalValue(), 0);
+    }
+
+    findProductByName(name) {
+        return this.inventory.find(product => product.name.toLowerCase() === name.toLowerCase()) || null;
+    }
+}
 
 
 
