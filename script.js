@@ -52,6 +52,10 @@ class Store {
     }
 }
 
+const eggs = new ProductProperties("Eggs", 2.99, 12);
+const bread = new ProductProperties("Bread", 1.99, 2);
+const tomato = new ProductProperties("Tomato", 3.25, 3);
+
 
 
 
