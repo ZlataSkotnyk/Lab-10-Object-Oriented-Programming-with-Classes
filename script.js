@@ -13,7 +13,7 @@ class ProducrProperties {
 }
 
 class PerishableProductProperties extends ProducrProperties {
-    constractor(name, price, quantity, expirationDate){
+    constructor(name, price, quantity, expirationDate){
         super(name, price, quantity);
         this.expirationDate = expirationDate;
     }
@@ -25,3 +25,10 @@ class PerishableProductProperties extends ProducrProperties {
 
 let apple = new PerishableProductProperties("Apple", 1.5, 1, "12/12/2025");
 let milk = new PerishableProductProperties("Milk", 10.0, 1, "17/12/2025");
+
+console.log(apple.toString());
+console.log(milk.toString());
+
+
+
+
