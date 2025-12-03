@@ -56,8 +56,19 @@ const eggs = new ProductProperties("Eggs", 2.99, 12);
 const bread = new ProductProperties("Bread", 1.99, 2);
 const tomato = new ProductProperties("Tomato", 3.25, 3);
 
+const myStore = new Store();
 
+myStore.addProduct(milk);
+myStore.addProduct(apple);
+myStore.addProduct(eggs);
+myStore.addProduct(bread);
+myStore.addProduct(tomato);
 
+console.log("Total Value BEFORE discount: $" + myStore.getInventoryValue().toFixed(2));
+
+ProductProperties.applyDiscount(myStore.inventory, 0.1);
+
+console.log("Total Value AFTER 10% discount: $" + myStore.getInventoryValue().toFixed(2));
 
 
 
