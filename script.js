@@ -22,3 +22,6 @@ class PerishableProductProperties extends ProducrProperties {
         return `${super.toString()}, Expiration Date: ${this.expirationDate}`;
     }
 }
+
+let apple = new PerishableProductProperties("Apple", 1.5, 1, "12/12/2025");
+let milk = new PerishableProductProperties("Milk", 10.0, 1, "17/12/2025");
