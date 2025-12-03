@@ -7,4 +7,14 @@ class ProducrProperties {
     getTotalValue(){
         return this.price * this.quantity;
     }
+    toString(){
+        return `Product: ${this.name}, Price: $${this.price.toFixed(2)}, Quantity: ${this.quantity}`
+    }
+}
+
+class PerishableProductProperties extends ProducrProperties {
+    constractor(name, price, quantity, expirationDate){
+        super(name, price, quantity);
+        this.expirationDate = expirationDate;
+    }
 }
